@@ -18,7 +18,7 @@
 
             <!-- Adding shimmer layout for animation -->
             <include layout="@layout/shimmerlayout" />
-            
+
         </LinearLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
