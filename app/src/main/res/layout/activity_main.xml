@@ -26,19 +26,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:text="@string/trading"
+                    android:fontFamily="@font/roboto_medium"
                     android:gravity="center"
+                    android:text="@string/trading"
 
-                    android:textColor="@color/black"
-/>
+                    android:textColor="@color/headingcolor"
+                    android:textSize="@dimen/_21sdp" />
                 <ImageView
                     android:id="@+id/img_more"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
-                    android:padding="5dp"
-                android:layout_marginRight="5dp"
+
+                    android:layout_marginRight="@dimen/_16sdp"
                     android:src="@drawable/moreblack24">
 
                 </ImageView>
