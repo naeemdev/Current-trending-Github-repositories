@@ -2,4 +2,7 @@
     <string name="app_name">Gojek-Assignment_android</string>
     <string name="action_settings">Settings</string>
     <string name="trading">Trading</string>
+    <string name="somthingwentwrong">Something went wrong</string>
+    <string name="analain_msg">an alien probably blocking your signal.</string>
+    <string name="retry">Retry</string>
 </resources>
