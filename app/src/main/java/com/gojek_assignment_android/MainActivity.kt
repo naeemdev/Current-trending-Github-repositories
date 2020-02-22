@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
-            /// call api for more images
+            /// call api for load data
             layout_shimmer!!.visibility = View.VISIBLE
             mSwipeRefreshLayout!!.isRefreshing = false
 
