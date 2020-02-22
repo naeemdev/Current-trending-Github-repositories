@@ -1,33 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <View
-        android:id="@+id/img_profile"
-        android:layout_width="@dimen/_32sdp"
-        android:layout_height="@dimen/_32sdp"
-        android:layout_marginTop="@dimen/_21sdp"
-        android:background="@drawable/roundedicon_black_24dp" />
-
-    <View
-        android:id="@+id/tv_name"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_12sdp"
-        android:layout_marginLeft="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_21sdp"
-        android:layout_toRightOf="@id/img_profile"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="@color/placeholder_bg" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_21sdp"
+        android:layout_marginBottom="@dimen/_21sdp">
+
+        <View
+            android:id="@+id/img_profile"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+
+            android:background="@drawable/roundedicon_black_24dp" />
+
+        <View
+            android:id="@+id/tv_name"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_16sdp"
+
+            android:layout_toRightOf="@id/img_profile"
+            android:background="@drawable/grayrounded_bg" />
+
+        <View
+            android:id="@+id/tv_lng"
+            android:layout_width="@dimen/_260sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:layout_below="@id/tv_name"
+            android:layout_marginLeft="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_36sdp"
+            android:layout_toRightOf="@id/img_profile"
+            android:background="@drawable/grayrounded_bg" />
+    </RelativeLayout>
+
     <View
-        android:id="@+id/tv_lng"
-        android:layout_width="@dimen/_260sdp"
-        android:layout_height="@dimen/_12sdp"
-        android:layout_below="@id/tv_name"
-        android:layout_marginLeft="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginRight="@dimen/_16sdp"
-        android:layout_toRightOf="@id/img_profile"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:background="@color/placeholder_bg" />
-</RelativeLayout>
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.gojek_assignment_android
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
@@ -12,7 +13,7 @@ import com.gojek_assignment_android.Utils.isConnectedToNetwork as isConnectedToN
 class MainActivity : AppCompatActivity() {
 
     var mShimmerViewContainer: ShimmerFrameLayout? = null
-    var layout_nointernet: LinearLayout? = null
+    var layout_nointernet: RelativeLayout? = null
     var layout_shimmer: LinearLayout? = null
     private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
