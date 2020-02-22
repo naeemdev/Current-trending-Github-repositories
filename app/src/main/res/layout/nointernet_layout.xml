@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:id="@+id/layout_nointernet"
     android:gravity="center"
+    android:visibility="gone"
     android:orientation="vertical">
 
     <ImageView
