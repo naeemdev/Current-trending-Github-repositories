@@ -19,7 +19,11 @@
             <!-- Adding shimmer layout for animation -->
             <include layout="@layout/shimmerlayout" />
 
+            <!-- Adding no internet layout to main layout-->
+            <include layout="@layout/nointernet_layout" />
+
         </LinearLayout>
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
