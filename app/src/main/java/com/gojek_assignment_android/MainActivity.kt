@@ -33,24 +33,15 @@ class MainActivity : AppCompatActivity() {
 
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
-            /*
-            check is internet connected or not if its connected than call to API
-           else   show no internet connection layout
-           */
-            if (isConnectedToNetwork1()) {
 
-                /// call api for load data
-                layout_shimmer!!.visibility = View.VISIBLE
-            } else {
-                layout_shimmer!!.visibility = View.GONE
-                layout_nointernet!!.visibility = View.VISIBLE
-            }
+            calltoapi()
 
             mSwipeRefreshLayout!!.isRefreshing = false
 
 
         })
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -64,4 +55,18 @@ class MainActivity : AppCompatActivity() {
         super.onPause()
     }
 
+
+    private fun calltoapi() {
+        /*
+           check is internet connected or not if its connected than call to API
+          else   show no internet connection layout
+          */
+        if (isConnectedToNetwork1()) {
+            /// call api for load data
+            layout_shimmer!!.visibility = View.VISIBLE
+        } else {
+            layout_shimmer!!.visibility = View.GONE
+            layout_nointernet!!.visibility = View.VISIBLE
+        }
+    }
 }
