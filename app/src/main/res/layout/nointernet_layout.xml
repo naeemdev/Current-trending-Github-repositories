@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_nointernet"
     android:gravity="center"
     android:visibility="gone"
+    tools:context=".MainActivity"
     android:orientation="vertical">
 
     <ImageView
@@ -41,6 +43,7 @@
         android:layout_margin="@dimen/_10ssp"
         android:background="@drawable/green_border_bg"
         android:text="@string/retry"
+        android:onClick="onRettyclick"
         android:textColor="@color/green"
         android:textStyle="bold" />
 

@@ -69,4 +69,11 @@ class MainActivity : AppCompatActivity() {
             layout_nointernet!!.visibility = View.VISIBLE
         }
     }
+
+    ///click listener for Retry button
+    fun onRettyclick(view: View) {
+        //call to api when retry click
+        calltoapi()
+
+    }
 }
