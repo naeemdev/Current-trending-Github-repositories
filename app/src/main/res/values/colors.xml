@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
+    <color name="color_someting">#4A4A4A</color>
     <color name="headingcolor">#25282B</color>
     <color name="placeholder_bg">#dddddd</color>
-    <color name="gray">#727171</color>
-    <color name="green">#4aa971</color>
+    <color name="gray">#92929292</color>
+    <color name="green">#31B057</color>
+
 
 </resources>
