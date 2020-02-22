@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import com.gojek_assignment_android.Utils.isConnectedToNetwork as isConnectedToNetwork1
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,8 +33,19 @@ class MainActivity : AppCompatActivity() {
 
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
-            /// call api for load data
-            layout_shimmer!!.visibility = View.VISIBLE
+            /*
+            check is internet connected or not if its connected than call to API
+           else   show no internet connection layout
+           */
+            if (isConnectedToNetwork1()) {
+
+                /// call api for load data
+                layout_shimmer!!.visibility = View.VISIBLE
+            } else {
+                layout_shimmer!!.visibility = View.GONE
+                layout_nointernet!!.visibility = View.VISIBLE
+            }
+
             mSwipeRefreshLayout!!.isRefreshing = false
 
 
