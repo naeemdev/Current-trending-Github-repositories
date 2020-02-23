@@ -23,6 +23,18 @@
             <!-- Adding no internet layout to main layout-->
             <include layout="@layout/nointernet_layout" />
 
+            <com.hendraanggrian.recyclerview.widget.ExpandableRecyclerView
+                android:id="@+id/recyclerview_trending"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/repo_row_itm" />
+
         </LinearLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

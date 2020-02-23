@@ -5,4 +5,5 @@
     <string name="somthingwentwrong">Something went wrong</string>
     <string name="analain_msg">an alien probably blocking your signal.</string>
     <string name="retry">Retry</string>
+    <string name="c">c++</string>
 </resources>
