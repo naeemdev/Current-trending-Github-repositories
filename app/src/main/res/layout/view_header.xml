@@ -7,8 +7,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_21sdp"
-        android:layout_marginBottom="@dimen/_21sdp">
+        android:layout_marginTop="@dimen/_16dp"
+        android:layout_marginBottom="@dimen/_16dp">
 
         <ImageView
             android:id="@+id/img_profile"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_name"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_6dp"
             android:layout_marginRight="@dimen/_36sdp"
             android:layout_toRightOf="@id/img_profile"
             android:fontFamily="@font/roboto_medium"

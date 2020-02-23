@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_8dp"
 
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
+
         android:layout_height="wrap_content">
 
         <View
@@ -21,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+
             android:layout_marginRight="@dimen/_16sdp"
             android:layout_toRightOf="@+id/img_dummy"
             android:fontFamily="@font/roboto"
@@ -34,9 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_detail"
             android:layout_marginLeft="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8dp"
             android:layout_marginRight="@dimen/_16sdp"
-            android:layout_marginBottom="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16dp"
             android:layout_toRightOf="@+id/img_dummy"
 
             android:gravity="center_vertical"

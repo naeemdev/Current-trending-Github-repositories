@@ -4,4 +4,7 @@
     <dimen name="_4dp">4dp</dimen>
     <dimen name="_16dp">16dp</dimen>
     <dimen name="_1dp">1dp</dimen>
+    <dimen name="_8dp">8dp</dimen>
+    <dimen name="_21dp">21dp</dimen>
+    <dimen name="_6dp">6dp</dimen>
 </resources>
