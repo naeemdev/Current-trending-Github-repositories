@@ -71,5 +71,7 @@ dependencies {
 
     //swipe refresh layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    //expandablelayout
+    implementation 'com.github.traex.expandablelayout:library:1.2.2'
 
 }
