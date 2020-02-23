@@ -1,14 +1,17 @@
 package com.gojek_assignment_android
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.gojek_assignment_android.interfaces.ResponseListener
+import com.gojek_assignment_android.model.TrendingRepositories_model
 import com.gojek_assignment_android.viewmodel.TrendingRepositories_Viewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.gojek_assignment_android.Utils.isConnectedToNetwork as isConnectedToNetwork1
@@ -76,6 +79,11 @@ class MainActivity : AppCompatActivity(), ResponseListener {
             /// call api for load data
             layout_shimmer!!.visibility = View.VISIBLE
 
+            mTrendingRepositories_Viewmodel.getTrendingRepository(this)!!.observe(this,
+                Observer<List<TrendingRepositories_model>> { mTrendingRepositories_model ->
+                    Log.e("sizea_rray", mTrendingRepositories_model.size.toString())
+
+                })
 
         } else {
             layout_shimmer!!.visibility = View.GONE
