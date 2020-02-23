@@ -5,22 +5,30 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.gojek_assignment_android.interfaces.ResponseListener
+import com.gojek_assignment_android.viewmodel.TrendingRepositories_Viewmodel
 import kotlinx.android.synthetic.main.activity_main.*
 import com.gojek_assignment_android.Utils.isConnectedToNetwork as isConnectedToNetwork1
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ResponseListener {
 
     var mShimmerViewContainer: ShimmerFrameLayout? = null
     var layout_nointernet: RelativeLayout? = null
     var layout_shimmer: LinearLayout? = null
     private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
+
+    private lateinit var mTrendingRepositories_Viewmodel: TrendingRepositories_Viewmodel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+
+        mTrendingRepositories_Viewmodel =
+            ViewModelProvider(this).get(TrendingRepositories_Viewmodel::class.java)
 
         //find by id  shimmer View from xml
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container)
@@ -30,8 +38,10 @@ class MainActivity : AppCompatActivity() {
 
         /*Find by id shimmer  layout for visibillty*/
         layout_shimmer = findViewById(R.id.layout_shimmer)
+
         mSwipeRefreshLayout = findViewById(R.id.mSwipeRefreshLayout)
 
+        calltoapi()
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
 
@@ -65,6 +75,8 @@ class MainActivity : AppCompatActivity() {
         if (isConnectedToNetwork1()) {
             /// call api for load data
             layout_shimmer!!.visibility = View.VISIBLE
+
+
         } else {
             layout_shimmer!!.visibility = View.GONE
             layout_nointernet!!.visibility = View.VISIBLE
@@ -75,6 +87,13 @@ class MainActivity : AppCompatActivity() {
     fun onRettyclick(view: View) {
         //call to api when retry click
         calltoapi()
+
+    }
+
+    override fun onError(message: String) {
+//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        layout_shimmer!!.visibility = View.GONE
+        layout_nointernet!!.visibility = View.VISIBLE
 
     }
 }
