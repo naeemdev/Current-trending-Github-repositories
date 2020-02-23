@@ -99,7 +99,8 @@ class MainActivity : AppCompatActivity(), ResponseListener {
                     Log.e("sizea_rray", mTrendingRepositories_model.size.toString())
                     mShimmerViewContainer!!.stopShimmerAnimation()
                     layout_shimmer!!.visibility = View.GONE
-
+                    mTrendingrepoLiveData.addAll(mTrendingRepositories_model)
+                    setdatatorecyclerView()
                 })
 
         } else {
@@ -108,6 +109,17 @@ class MainActivity : AppCompatActivity(), ResponseListener {
         }
     }
 
+
+    fun setdatatorecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView!!.layoutManager = layoutManager
+        mTrendingRepo_CustomAdapter =
+            TrendingRepo_CustomAdapter(layoutManager, this, mTrendingrepoLiveData)
+        //set the CustomAdapter
+        recyclerView!!.setAdapter(mTrendingRepo_CustomAdapter)
+
+
+    }
     ///click listener for Retry button
     fun onRettyclick(view: View) {
         //call to api when retry click
