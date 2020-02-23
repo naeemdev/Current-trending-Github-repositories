@@ -8,12 +8,16 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.gojek_assignment_android.CustomAdatper.TrendingRepo_CustomAdapter
 import com.gojek_assignment_android.interfaces.ResponseListener
 import com.gojek_assignment_android.model.TrendingRepositories_model
 import com.gojek_assignment_android.viewmodel.TrendingRepositories_Viewmodel
+import com.hendraanggrian.recyclerview.widget.ExpandableRecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 import com.gojek_assignment_android.Utils.isConnectedToNetwork as isConnectedToNetwork1
 
 class MainActivity : AppCompatActivity(), ResponseListener {
@@ -23,7 +27,13 @@ class MainActivity : AppCompatActivity(), ResponseListener {
     var layout_shimmer: LinearLayout? = null
     private var mSwipeRefreshLayout: SwipeRefreshLayout? = null
 
+    private var mTrendingRepo_CustomAdapter: TrendingRepo_CustomAdapter? = null
     private lateinit var mTrendingRepositories_Viewmodel: TrendingRepositories_Viewmodel
+    private var recyclerView: ExpandableRecyclerView? = null
+
+
+    internal var mTrendingrepoLiveData: MutableList<TrendingRepositories_model> =
+        ArrayList<TrendingRepositories_model>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,6 +45,8 @@ class MainActivity : AppCompatActivity(), ResponseListener {
 
         //find by id  shimmer View from xml
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container)
+        recyclerView = findViewById(R.id.recyclerview_trending)
+
 
         /*Find by id  No internet  layout for visibillty*/
         layout_nointernet = findViewById(R.id.layout_nointernet)
@@ -79,6 +91,8 @@ class MainActivity : AppCompatActivity(), ResponseListener {
             /// call api for load data
             mShimmerViewContainer!!.startShimmerAnimation()
             layout_shimmer!!.visibility = View.VISIBLE
+            layout_nointernet!!.visibility = View.GONE
+            mTrendingrepoLiveData.clear()
 
             mTrendingRepositories_Viewmodel.getTrendingRepository(this)!!.observe(this,
                 Observer<List<TrendingRepositories_model>> { mTrendingRepositories_model ->
