@@ -77,11 +77,14 @@ class MainActivity : AppCompatActivity(), ResponseListener {
           */
         if (isConnectedToNetwork1()) {
             /// call api for load data
+            mShimmerViewContainer!!.startShimmerAnimation()
             layout_shimmer!!.visibility = View.VISIBLE
 
             mTrendingRepositories_Viewmodel.getTrendingRepository(this)!!.observe(this,
                 Observer<List<TrendingRepositories_model>> { mTrendingRepositories_model ->
                     Log.e("sizea_rray", mTrendingRepositories_model.size.toString())
+                    mShimmerViewContainer!!.stopShimmerAnimation()
+                    layout_shimmer!!.visibility = View.GONE
 
                 })
 
