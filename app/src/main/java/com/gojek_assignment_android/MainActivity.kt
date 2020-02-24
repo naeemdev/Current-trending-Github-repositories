@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity(), ResponseListener {
     private lateinit var mTrendingRepositories_Viewmodel: TrendingRepositories_Viewmodel
     private var recyclerView: ExpandableRecyclerView? = null
 
+    var mSharedPreferenceHelper: SharedPreferenceHelper? = null
+
 
     internal var mTrendingrepoLiveData: MutableList<TrendingRepositories_model> =
         ArrayList<TrendingRepositories_model>()
@@ -43,8 +45,10 @@ class MainActivity : AppCompatActivity(), ResponseListener {
         mTrendingRepositories_Viewmodel =
             ViewModelProvider(this).get(TrendingRepositories_Viewmodel::class.java)
 
+        mSharedPreferenceHelper = SharedPreferenceHelper(this)
         //find by id  shimmer View from xml
         mShimmerViewContainer = findViewById(R.id.shimmer_view_container)
+
         recyclerView = findViewById(R.id.recyclerview_trending)
 
 
@@ -56,11 +60,11 @@ class MainActivity : AppCompatActivity(), ResponseListener {
 
         mSwipeRefreshLayout = findViewById(R.id.mSwipeRefreshLayout)
 
-        calltoapi()
+        checkvalidation()
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
 
-            calltoapi()
+            checkvalidation()
 
             mSwipeRefreshLayout!!.isRefreshing = false
 
@@ -82,7 +86,7 @@ class MainActivity : AppCompatActivity(), ResponseListener {
     }
 
 
-    private fun calltoapi() {
+    private fun checkvalidation() {
         /*
            check is internet connected or not if its connected than call to API
           else   show no internet connection layout
