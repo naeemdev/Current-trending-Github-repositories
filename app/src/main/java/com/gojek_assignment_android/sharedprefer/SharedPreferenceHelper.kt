@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.gojek_assignment_android.model.TrendingRepositories_model
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.util.concurrent.TimeUnit
 
 
@@ -45,6 +46,18 @@ class SharedPreferenceHelper(context: Context) {
     }
 
 
+    fun getTrendingRepo(): List<TrendingRepositories_model>? {
+        val gson = Gson()
+        val models: List<TrendingRepositories_model> = ArrayList<TrendingRepositories_model>()
+        val json = preferences.getString(REPO_DATA_KEY, "")
+        return if (json == "") {
+            models
+        } else {
+            val listType = object :
+                TypeToken<java.util.ArrayList<TrendingRepositories_model?>?>() {}.type
+            gson.fromJson<List<TrendingRepositories_model>>(json, listType)
+        }
+    }
 
 
 
