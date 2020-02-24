@@ -62,11 +62,11 @@ class MainActivity : AppCompatActivity(), ResponseListener {
 
         mSwipeRefreshLayout = findViewById(R.id.mSwipeRefreshLayout)
 
-        checkvalidation()
+        checkstored_inshareprfe()
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
 
-            checkvalidation()
+            calltoapi()
 
             mSwipeRefreshLayout!!.isRefreshing = false
 
@@ -75,66 +75,59 @@ class MainActivity : AppCompatActivity(), ResponseListener {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        //start  Shimmer Animation
+    private fun checkstored_inshareprfe() {
+
+        layout_nointernet!!.visibility = View.GONE
+        /// call api for load data
+        mTrendingrepoLiveData.clear()
+
+        mTrendingrepoLiveData =
+            mSharedPreferenceHelper!!.getTrendingRepo() as MutableList<TrendingRepositories_model>
+
+        if (mSharedPreferenceHelper!!.expired > System.currentTimeMillis()) {
+
+            mShimmerViewContainer!!.stopShimmerAnimation()
+            layout_shimmer!!.visibility = View.GONE
+
+            setdatatorecyclerView()
+        } else {
+
+            calltoapi()
+        }
+
+
+    }
+
+    // this funcation call to API for loadind data from server and save to list
+    fun calltoapi() {
         mShimmerViewContainer!!.startShimmerAnimation()
-    }
-
-    override fun onPause() {
-        //Stop  Shimmer Animation
-        mShimmerViewContainer!!.stopShimmerAnimation()
-        super.onPause()
-    }
-
-
-    private fun checkvalidation() {
+        layout_shimmer!!.visibility = View.VISIBLE
+        layout_nointernet!!.visibility = View.GONE
         /*
-           check is internet connected or not if its connected than call to API
-          else   show no internet connection layout
-          */
+                 check is internet connected or not if its connected than call to API
+                else   show no internet connection layout
+                */
         if (isConnectedToNetwork1()) {
-            /// call api for load data
-            mShimmerViewContainer!!.startShimmerAnimation()
-            layout_shimmer!!.visibility = View.VISIBLE
-            layout_nointernet!!.visibility = View.GONE
+            mSharedPreferenceHelper!!.clearPrefs()
             mTrendingrepoLiveData.clear()
-
-            mTrendingrepoLiveData =
-                mSharedPreferenceHelper!!.getTrendingRepo() as MutableList<TrendingRepositories_model>
-
-            if (mSharedPreferenceHelper!!.expired > System.currentTimeMillis()) {
-
-                mShimmerViewContainer!!.stopShimmerAnimation()
-                layout_shimmer!!.visibility = View.GONE
-
-                setdatatorecyclerView()
-            } else {
-
-                calltoapi()
-            }
-
+            mTrendingRepositories_Viewmodel.getTrendingRepository(this)!!.observe(this,
+                Observer<List<TrendingRepositories_model>> { mTrendingRepositories_model ->
+                    Log.e("sizea_rray", mTrendingRepositories_model.size.toString())
+                    mShimmerViewContainer!!.stopShimmerAnimation()
+                    layout_shimmer!!.visibility = View.GONE
+                    mTrendingrepoLiveData.addAll(mTrendingRepositories_model)
+                    mSharedPreferenceHelper!!.setTrendingRepoData(mTrendingRepositories_model)
+                    mSharedPreferenceHelper!!.expired =
+                        System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(120)
+                    setdatatorecyclerView()
+                })
         } else {
             layout_shimmer!!.visibility = View.GONE
             layout_nointernet!!.visibility = View.VISIBLE
         }
     }
 
-
-    fun calltoapi() {
-        mSharedPreferenceHelper!!.clearPrefs()
-        mTrendingRepositories_Viewmodel.getTrendingRepository(this)!!.observe(this,
-            Observer<List<TrendingRepositories_model>> { mTrendingRepositories_model ->
-                Log.e("sizea_rray", mTrendingRepositories_model.size.toString())
-                mShimmerViewContainer!!.stopShimmerAnimation()
-                layout_shimmer!!.visibility = View.GONE
-                mTrendingrepoLiveData.addAll(mTrendingRepositories_model)
-                mSharedPreferenceHelper!!.setTrendingRepoData(mTrendingRepositories_model)
-                mSharedPreferenceHelper!!.expired =
-                    System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(120)
-                setdatatorecyclerView()
-            })
-    }
+    ///sat data to recyview
     fun setdatatorecyclerView() {
 
         if (mTrendingrepoLiveData.size > 0) {
