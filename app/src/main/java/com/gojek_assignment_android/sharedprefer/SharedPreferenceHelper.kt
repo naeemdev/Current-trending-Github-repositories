@@ -2,7 +2,8 @@ package com.gojek_assignment_android.sharedprefer
 
 import android.content.Context
 import android.content.SharedPreferences
- 
+import com.gojek_assignment_android.model.TrendingRepositories_model
+import com.google.gson.Gson
 import java.util.concurrent.TimeUnit
 
 
@@ -32,6 +33,21 @@ class SharedPreferenceHelper(context: Context) {
     fun clearPrefs() {
         preferences.edit().clear().commit()
     }
+
+
+    fun setTrendingRepoData(model: List<TrendingRepositories_model>) {
+        editor = preferences.edit()
+        val gson = Gson()
+        val json = gson.toJson(model)
+        editor!!.putString(REPO_DATA_KEY, json)
+        editor!!.apply()
+        editor!!.commit()
+    }
+
+
+
+
+
 
 
     init {
